@@ -1,9 +1,7 @@
-const createObject = (id, firstName, location) => ({ id, firstName, location });
-
 const getListStudents = () => [
-  createObject(1, 'Guillaume', 'San Francisco'),
-  createObject(2, 'James', 'Columbia'),
-  createObject(5, 'Serena', 'San Francisco')
+    { id: 1, firstName: 'Guillaume', location: 'San Francisco' },
+    { id: 2, firstName: 'James', location: 'Columbia' },
+    { id: 5, firstName: 'Serena', location: 'San Francisco' }
 ];
 
 export default getListStudents;
