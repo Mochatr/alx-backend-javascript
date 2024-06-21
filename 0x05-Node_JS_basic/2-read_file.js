@@ -17,7 +17,7 @@ const parseStudentsByField = (dataList) => {
     studentsByField[fieldName].push(studentList[firstNameIdx]);
   }
 
-  return { studentsByField, studentsCount );
+  return { studentsByField, studentsCount };
 };
 
 const printStudentsWithField = (studentsByField) => {
