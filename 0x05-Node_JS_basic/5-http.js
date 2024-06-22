@@ -2,7 +2,7 @@ const http = require('http');
 const fs = require('fs');
 
 const portNumber = 1245;
-const hostName = 'localhost';
+const hostname = 'localhost';
 const dbName = process.argv[2];
 
 const parseStudentsByField = (dataList) => {
@@ -11,15 +11,16 @@ const parseStudentsByField = (dataList) => {
   const firstNameIdx = labelsList.indexOf('firstname');
 
   const studentsByField = {};
-  let = studentsCount = 0;
+  let studentsCount = 0;
 
   for (let i = 1; i < dataList.length; i += 1) {
+    // eslint-disable-next-line no-continue
     if (dataList[i] === '') continue;
     studentsCount += 1;
     const studentList = dataList[i].split(',');
     const fieldName = studentList[fieldIdx];
     if (!studentsByField[fieldName]) studentsByField[fieldName] = [];
-    studentsByFields[fieldName].push(studentList[firstNameIdx]);
+    studentsByField[fieldName].push(studentList[firstNameIdx]);
   }
 
   return { studentsByField, studentsCount };
@@ -33,14 +34,14 @@ const printStudentsWithField = (studentsByField) => {
     const firstNamesList = studentsByField[key];
     const studentsNumber = firstNamesList.length;
     const firstNamesStr = firstNamesList.join(', ');
-    studentStr += `Number of students in ${key}: ${studentsNumber}. List: ${firstNamesStr}`;
+    studentsStr += `Number of students in ${key}: ${studentsNumber}. List: ${firstNamesStr}`;
     if (i < keys.length - 1) studentsStr += '\n';
   }
 
   return studentsStr;
 };
 
-const countStudents = (path) => new promise((resolve, reject) => {
+const countStudents = (path) => new Promise((resolve, reject) => {
   fs.readFile(path, 'utf-8', (error, data) => {
     if (error) {
       reject(new Error('Cannot load the database'));
@@ -48,7 +49,7 @@ const countStudents = (path) => new promise((resolve, reject) => {
     }
     
     const dataList = data.split('\n');
-    const studentsdata = parseStudentsByField(dataList);
+    const studentsData = parseStudentsByField(dataList);
     const { studentsByField } = studentsData;
     const { studentsCount } = studentsData;
 
@@ -60,13 +61,13 @@ const countStudents = (path) => new promise((resolve, reject) => {
 
 const sendResponse = (res, data) => {
   res.statusCode = 200;
-  res.setHeader('Content-type', 'text/plain');
+  res.setHeader('Content-Type', 'text/plain');
   res.end(data);
 };
 
 const app = http.createServer((req, res) => {
   if (req.url === '/') {
-    const responseText = "Hello Holberton School!";
+    const responseText = 'Hello Holberton School!';
     sendResponse(res, responseText);
   } else if (req.url === '/students') {
     countStudents(dbName)
