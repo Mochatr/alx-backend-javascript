@@ -9,11 +9,12 @@ const parseStudentsByField = (dataList) => {
   let studentsCount = 0;
 
   for (let i = 1; i < dataList.length; i += 1) {
+    // eslint-disable-next-line no-continue
     if (dataList[i] === '') continue;
     studentsCount += 1;
     const studentList = dataList[i].split(',');
     const fieldName = studentList[fieldIdx];
-    if (!studentsByField[fieldName] studentsByField[fieldName] = [];
+    if (!studentsByField[fieldName]) studentsByField[fieldName] = [];
     studentsByField[fieldName].push(studentList[firstNameIdx]);
   }
 
