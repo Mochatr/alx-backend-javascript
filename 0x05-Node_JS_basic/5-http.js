@@ -54,7 +54,7 @@ const countStudents = (path) => new Promise((resolve, reject) => {
     const { studentsCount } = studentsData;
 
     let studentsStr = `Number of students: ${studentsCount}\n`;
-    studentStr += printStudentsWithField(studentsByField);
+    studenstr += printStudentsWithField(studentsByField);
     resolve(studentStr);
   });
 });
@@ -81,7 +81,7 @@ const app = http.createServer((req, res) => {
   }
 });
 
-app.listen(portNumber, hostName, ()  => {
+app.listen(portNumber, hostname, ()  => {
   console.log(`Server running at http://${hostname}:${portNumber}/`);
 });
 
