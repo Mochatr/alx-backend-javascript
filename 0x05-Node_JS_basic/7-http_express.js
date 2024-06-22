@@ -11,15 +11,16 @@ const parseStudentsByField = (dataList) => {
   const firstNameIdx = labelsList.indexOf('firstname');
 
   const studentsByField = {};
-  let = studentsCount = 0;
+  let studentsCount = 0;
 
   for (let i = 1; i < dataList.length; i += 1) {
+    // eslint-disable-next-line no-continue
     if (dataList[i] === '') continue;
     studentsCount += 1;
     const studentList = dataList[i].split(',');
     const fieldName = studentList[fieldIdx];
     if (!studentsByField[fieldName]) studentsByField[fieldName] = [];
-    studentsByFields[fieldName].push(studentList[firstNameIdx]);
+    studentsByField[fieldName].push(studentList[firstNameIdx]);
   }
 
   return { studentsByField, studentsCount };
@@ -33,14 +34,14 @@ const printStudentsWithField = (studentsByField) => {
     const firstNamesList = studentsByField[key];
     const studentsNumber = firstNamesList.length;
     const firstNamesStr = firstNamesList.join(', ');
-    studentStr += `Number of students in ${key}: ${studentsNumber}. List: ${firstNamesStr}`;
+    studentsStr += `Number of students in ${key}: ${studentsNumber}. List: ${firstNamesStr}`;
     if (i < keys.length - 1) studentsStr += '\n';
   }
 
   return studentsStr;
 };
 
-const countStudents = (path) => new promise((resolve, reject) => {
+const countStudents = (path) => new Promise((resolve, reject) => {
   fs.readFile(path, 'utf-8', (error, data) => {
     if (error) {
       reject(new Error('Cannot load the database'));
@@ -48,13 +49,13 @@ const countStudents = (path) => new promise((resolve, reject) => {
     }
 
     const dataList = data.split('\n');
-    const studentsdata = parseStudentsByField(dataList);
+    const studentsData = parseStudentsByField(dataList);
     const { studentsByField } = studentsData;
     const { studentsCount } = studentsData;
 
     let studentsStr = `Number of students: ${studentsCount}\n`;
-    studentStr += printStudentsWithField(studentsByField);
-    resolve(studentStr);
+    studentsStr += printStudentsWithField(studentsByField);
+    resolve(studentsStr);
   });
 });
 
