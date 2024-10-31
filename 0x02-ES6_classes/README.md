@@ -81,6 +81,8 @@ module.exports = {
 
 ```
 
+### .eslintrc.js
+
 ```js
 module.exports = {
   env: {
@@ -122,4 +124,8 @@ module.exports = {
 
 ```
 
-Don’t forget to run $ npm install when you have the package.json
+Don’t forget to run the following command to install all the dependencies.
+
+```bash
+$ npm install 
+```
